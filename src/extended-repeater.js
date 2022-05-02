@@ -52,4 +52,4 @@ module.exports = {
 };
 
 
-console.log(repeater('12345', { repeatTimes: 5 }))
+// console.log(repeater('12345', { repeatTimes: 5 }))

@@ -13,9 +13,10 @@ const { NotImplementedError } = require('../extensions/index.js');
  * transform([1, 2, 3, '--discard-prev', 4, 5]) => [1, 2, 4, 5]
  * 
  */
-function transform(arr) {
+function transform(array) {
   // throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
+  let arr = array;
   let resultArr = [];
   if (Array.isArray(arr) == false) {
     throw new Error("\'arr\' parameter must be an instance of the Array!");
@@ -27,14 +28,18 @@ function transform(arr) {
     switch ((typeof arr[i])) {
       case ('number'):
         // console.log(resultArr);
-        /*resultArr = */resultArr.push(arr[i]);
+        // console.log('i = ' + i + '; arr[i] = ' + arr[i])
+        // console.log(resultArr)
+        resultArr.push(arr[i]);
         break;
       case ('string'):
         switch (arr[i]) {
           case '--discard-prev':
             if ([i] > 0) {
-          resultArr = resultArr.pop();
-            }
+              if (arr[i-2] !== '--discard-next') {
+              resultArr.pop();
+              }
+          }
             else {
               break;
             }
@@ -53,8 +58,11 @@ function transform(arr) {
           case '--double-prev':
             if ([i] > 0) {
             // console.log("2")
+            if (arr[i-2] !== '--discard-next') {
           /*resultArr = */resultArr.push(resultArr[resultArr.length - 1]);
         }
+      }
+        
         else {
           break;
         }
@@ -79,7 +87,7 @@ function transform(arr) {
     }
   // })
 }
-  console.log(arr)
+  // console.log(Array.isArray(arr))
   return resultArr;
 }
 
@@ -87,5 +95,8 @@ module.exports = {
   transform
 };
 
+// // let randArr = [50, 15, 14, 85, 96, 12, 1, 0, 63, 36, 58, 20, 1]
+// let randArr = [1, 2, 3, '--double-next', 1337, '--discard-prev', 4, 5]
 
-console.log(transform( ['--discard-prev', 1, 2, 3]))
+// console.log(transform(randArr))
+// // console.log(transform( ['--discard-prev', 1, 2, 3]))
