@@ -15,11 +15,45 @@ const { NotImplementedError } = require('../extensions/index.js');
  * the output should be ["file", "file(1)", "image", "file(1)(1)", "file(2)"]
  *
  */
-function renameFiles(/* names */) {
-  throw new NotImplementedError('Not implemented');
+function renameFiles(names) {
+  // throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
+  input_array = names;
+  // console.log('input array: ' + input_array);
+  // console.log('---------------')
+  new_array = [];
+  for (let i = 0; i < input_array.length; i++) {
+    // console.log(new_array.includes(input_array[i]));
+
+    function add_number(element) {
+      return element + '(1)';
+    }
+
+    if ((new_array.includes(input_array[i]) )== false) {
+      // console.log(input_array + " " + new_array)
+      new_array.push(input_array[i]);
+      // console.log('if = false')
+      // console.log('i = ' + i + '; elem = ' + input_array[i]);
+      // console.log('new_array = ' + new_array)
+      // console.log('---------------')
+    }
+    else {
+      where_in_new = new_array.indexOf(input_array[i]);
+      // console.log(where_in_new);
+      new_array.push(add_number(new_array[where_in_new]));
+      // console.log('if = true');
+      // console.log('i = ' + i + '; elem = ' + input_array[i]);
+      // console.log('new_array = ' + new_array);
+      // console.log('---------------')
+    }
+  }
+return new_array;
 }
 
 module.exports = {
   renameFiles
 };
+
+// console.log(renameFiles(['doc', 'doc', 'image', 'doc(1)', 'doc']));
+
+// && (new_array.includes(new_array.add_number(input_array[i])))

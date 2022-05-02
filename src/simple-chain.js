@@ -5,6 +5,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 const chainMaker = {
+ 
   getLength() {
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
@@ -18,8 +19,13 @@ const chainMaker = {
     // remove line with error and write your code here
   },
   reverseChain() {
-    throw new NotImplementedError('Not implemented');
+    // throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
+    result_arr = chain_arr.reverse();
+    for (i = 1; i < this.result_arr.length; i++) {
+      
+    }
+    return this.result_arr.toString;
   },
   finishChain() {
     throw new NotImplementedError('Not implemented');
