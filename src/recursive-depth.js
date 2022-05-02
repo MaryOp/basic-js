@@ -16,12 +16,20 @@ class DepthCalculator {
   calculateDepth(arr) {
     // throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
+    let input_arr = arr;
     let depth = 1;
-    for (let i = 0; i < arr.length; i++) {
-      if (Array.isArray(arr[i]) == true) {
-        console.log(i + " " + arr[i] + " " + this.calculateDepth(arr[i]))
+    let depth_count= 1;
+    for (let i = 0; i < input_arr.length; i++) {
+      if (Array.isArray(input_arr[i]) == true) {
+        console.log("i = " + i + " arr[i] = " + input_arr[i] + " depth = " + this.calculateDepth(input_arr[i]))
         // if (this.calculateDepth(arr[i]) !== 1) {
-        depth+=this.calculateDepth(arr[i]);
+          depth+=this.calculateDepth(input_arr[i]);
+          depth_count+=1;
+          if (depth_count > depth) {
+            depth+=1;
+          }
+          // depth_add+=this.calculateDepth(arr[i]);
+          // depth+=depth_add;
         // }
         // else {
           // depth +=0;
@@ -30,9 +38,11 @@ class DepthCalculator {
       else {
         if (Array.isArray(arr[i]) == false) {
           depth+=0;
+          depth_count = 1;
           // return depth;
         }
       }
+      // depth = 1;
     }
 
       return depth;
@@ -45,4 +55,4 @@ module.exports = {
 };
 
 const depthCalc = new DepthCalculator();
-console.log(depthCalc.calculateDepth(([1, 2, 3, [1], 4, 5, [1]])))
+console.log(depthCalc.calculateDepth(([1, 2, 3, [8, [2]], 4, 5, []])))

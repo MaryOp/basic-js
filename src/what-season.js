@@ -17,12 +17,17 @@ function getSeason(date) {
   if (date == '' | date == undefined) {
     return 'Unable to determine the time of year!'
   };
+    
+  if ((typeof date !== 'object') | (typeof date.valueOf() !== 'number')){
+    return 'Invalid date!';
+  }
+  today = new Date();
   // console.log(typeof date + ' ' + date)
-  
-if ((typeof date !== 'object') | (typeof date.valueOf() !== 'number') | (date == Date.now())){
-  return 'Invalid date!';
-}
-
+  current_date = (today.getFullYear() + " " + today.getMonth() + " " + today.getDate())
+  input_date = (date.getFullYear() + " " + date.getMonth() + " " + date.getDate());
+  if (input_date == current_date) {
+    return 'Invalid date!';
+  }
   let month = date.getMonth();
   switch (month) {
     case 0:
@@ -51,4 +56,20 @@ module.exports = {
   getSeason
 };
 
-// console.log(getSeason(new Date()))
+
+const fakeDate = {
+  toString() {
+      return Date.prototype.toString.call(new Date());
+  },
+  [Symbol.toStringTag]: 'Date'
+};
+
+Object.setPrototypeOf(fakeDate, Object.getPrototypeOf(new Date()));
+
+
+// console.log(fakeDate)
+// console.log(getSeason(fakeDate))
+
+console.log(getSeason(new Date(1582, 5, 24, 3, 30, 22, 496)));
+
+console.log(typeof (new Date(1582, 5, 24, 3, 30, 22, 496)));
